@@ -10,6 +10,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run
+      env:
+        ID_RSA: ${{ secrets.ID_RSA }}
+        ID_RSA_PUB: ${{ secrets.ID_RSA_PUB }}
       run: |
         mkdir -p "$HOME/.ssh"
         echo "$ID_RSA" > "$HOME/.ssh/id_rsa"
