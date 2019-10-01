@@ -16,6 +16,8 @@ jobs:
         ID_RSA: ${{ secrets.ID_RSA }}
         ID_RSA_PUB: ${{ secrets.ID_RSA_PUB }}
       run: |
+        git config --global user.email zaomir@outlook.com
+        git config --global user.name zaoqi
         mkdir -p "$HOME/.ssh"
         echo "$ID_RSA" > "$HOME/.ssh/id_rsa"
         chmod 600 "$HOME/.ssh/id_rsa"
