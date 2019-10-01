@@ -16,6 +16,14 @@ jobs:
         ID_RSA: ${{ secrets.ID_RSA }}
         ID_RSA_PUB: ${{ secrets.ID_RSA_PUB }}
       run: |
+        git clone --depth 1 https://github.com/coolsnowwolf/lede.git
+        cd lede
+        ./scripts/feeds update -a && ./scripts/feeds install -a
+        cp ../.config ./
+        make -j4 V=s
+        
+        rm -fr $(find -name .gitignore) $(find -name .git)
+        
         git config --global user.email zaomir@outlook.com
         git config --global user.name zaoqi
         mkdir -p "$HOME/.ssh"
@@ -26,15 +34,8 @@ jobs:
         ssh-keyscan -H -t rsa github.com > "$HOME/.ssh/known_hosts"
         chmod 644 "$HOME/.ssh/known_hosts"
         git clone --depth 1 git@github.com:zaoqi/newifi-d2-lede-binary.git
-        
-        git clone --depth 1 https://github.com/coolsnowwolf/lede.git
-        cd lede
-        ./scripts/feeds update -a && ./scripts/feeds install -a
-        cp ../.config ./
-        make -j4 V=s
-        
-        rm -fr $(find -name .gitignore) $(find -name .git)
-        mv ../newifi-d2-lede-binary/.git ./
+        mv newifi-d2-lede-binary/.git ./
+        rm -fr newifi-d2-lede-binary
         git add .
         git commit -m .
         git push
