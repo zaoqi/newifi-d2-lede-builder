@@ -15,7 +15,7 @@ jobs:
         ID_RSA: ${{ secrets.ID_RSA }}
         ID_RSA_PUB: ${{ secrets.ID_RSA_PUB }}
       run: |
-        git clone --depth 1 https://github.com/coolsnowwolf/lede.git
+        git clone https://github.com/coolsnowwolf/lede.git
         cd lede
         ./scripts/feeds update -a && ./scripts/feeds install -a
         cp ../.config ./
