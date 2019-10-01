@@ -23,6 +23,7 @@ jobs:
         make -j4 V=s
         
         rm -fr $(find -name .gitignore) $(find -name .git)
+        mv README README-lede.md
         
         git config --global user.email zaomir@outlook.com
         git config --global user.name zaoqi
@@ -34,7 +35,7 @@ jobs:
         ssh-keyscan -H -t rsa github.com > "$HOME/.ssh/known_hosts"
         chmod 644 "$HOME/.ssh/known_hosts"
         git clone --depth 1 git@github.com:zaoqi/newifi-d2-lede-binary.git
-        mv newifi-d2-lede-binary/.git ./
+        mv newifi-d2-lede-binary/.git newifi-d2-lede-binary/README.md ./
         rm -fr newifi-d2-lede-binary
         git add .
         git commit -m .
