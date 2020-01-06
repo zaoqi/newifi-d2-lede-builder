@@ -19,7 +19,7 @@ jobs:
         cd lede
         ./scripts/feeds update -a && ./scripts/feeds install -a
         cp ../.config ./
-        make -j4 V=s
+        make -j1 V=s
         
         git config --global user.email zaomir@outlook.com
         git config --global user.name zaoqi
