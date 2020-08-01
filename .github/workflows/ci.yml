@@ -18,6 +18,7 @@ jobs:
         cd lede
         ./scripts/feeds update -a && ./scripts/feeds install -a
         cp ../.config ./
+        make -j8 download V=s
         make -j1 V=s
         
         git config --global user.email zaomir@outlook.com
