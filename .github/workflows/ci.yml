@@ -16,7 +16,8 @@ jobs:
       run: |
         git clone https://github.com/coolsnowwolf/lede.git
         cd lede
-        ./scripts/feeds update -a && ./scripts/feeds install -a
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
         cp ../.config ./
         make -j8 download V=s
         make -j1 V=s
